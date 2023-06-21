@@ -1,8 +1,8 @@
 //create a user; create a new user document in the database using the id parsed in
 //get a user; return the user from the users collection if the user id exists
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:demo_app_v2/app/app.logger.dart';
-import 'package:demo_app_v2/exceptions/firestore_api_exception.dart';
+import 'package:demo_app_v4/app/app.logger.dart';
+import 'package:demo_app_v4/exceptions/firestore_api_exception.dart';
 
 import '../models/application_models.dart';
 

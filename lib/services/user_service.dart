@@ -1,5 +1,5 @@
-import 'package:demo_app_v2/api/firestore_api.dart';
-import 'package:demo_app_v2/app/app.locator.dart';
+import 'package:demo_app_v4/api/firestore_api.dart';
+import 'package:demo_app_v4/app/app.locator.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 
 import '../app/app.logger.dart';

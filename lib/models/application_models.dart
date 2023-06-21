@@ -8,6 +8,8 @@ abstract class CurrentUser with _$CurrentUser {
 
   factory CurrentUser({
     required String id,
+    String? firstName,
+    String? lastName,
     String? email,
   }) = _CurrentUser;
 

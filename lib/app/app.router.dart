@@ -5,11 +5,11 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:demo_app_v2/ui/address_selection/address_selection_view.dart'
+import 'package:demo_app_v4/ui/address_selection/address_selection_view.dart'
     as _i3;
-import 'package:demo_app_v2/ui/create_account/create_account_view.dart' as _i4;
-import 'package:demo_app_v2/ui/login/login_view.dart' as _i5;
-import 'package:demo_app_v2/ui/startup/startup_view.dart' as _i2;
+import 'package:demo_app_v4/ui/create_account/create_account_view.dart' as _i4;
+import 'package:demo_app_v4/ui/login/login_view.dart' as _i5;
+import 'package:demo_app_v4/ui/startup/startup_view.dart' as _i2;
 import 'package:flutter/cupertino.dart' as _i7;
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';

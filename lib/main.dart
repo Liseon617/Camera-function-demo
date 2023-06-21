@@ -1,14 +1,14 @@
-import 'package:demo_app_v2/app/app.locator.dart';
-import 'package:demo_app_v2/ui/login/login_view.dart';
+import 'package:demo_app_v4/app/app.locator.dart';
+import 'package:demo_app_v4/dbhelper/mongodb.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'app/app.router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

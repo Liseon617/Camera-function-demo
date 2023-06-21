@@ -1,11 +1,16 @@
-import 'package:demo_app_v2/app/app.locator.dart';
-import 'package:demo_app_v2/app/app.logger.dart';
-import 'package:demo_app_v2/exceptions/firestore_api_exception.dart';
-import 'package:demo_app_v2/models/application_models.dart';
-import 'package:demo_app_v2/Services/user_service.dart';
+import 'package:demo_app_v4/app/app.locator.dart';
+import 'package:demo_app_v4/app/app.logger.dart';
+import 'package:demo_app_v4/exceptions/firestore_api_exception.dart';
+import 'package:demo_app_v4/models/application_models.dart';
+import 'package:demo_app_v4/Services/user_service.dart';
+import 'package:demo_app_v4/ui/create_account/create_account_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../dbhelper/mongodb.dart';
+import '../../models/mongoDbModel.dart';
+
 
 abstract class AuthenticationViewModel extends FormViewModel {
   final log = getLogger('AuthenticationViewModel');
@@ -17,7 +22,10 @@ abstract class AuthenticationViewModel extends FormViewModel {
       locator<FirebaseAuthenticationService>();
 
   final String successRoute;
-  AuthenticationViewModel({required this.successRoute});
+  // final String firstName;
+  // final String lastName;
+  AuthenticationViewModel({/*required this.firstName, required this.lastName,*/ required this.successRoute});
+
 
   @override
   void setFormStatus() {}
@@ -29,7 +37,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
 
     try {
       final result =
-          await runBusyFuture(runAuthentication(), throwException: true);
+          await runAuthentication();
 
       await _handleAuthenticationResponse(result);
     } on FirestoreApiException catch (e) {
@@ -60,12 +68,20 @@ abstract class AuthenticationViewModel extends FormViewModel {
 
     if (!authResult.hasError && authResult.user != null) {
       final user = authResult.user;
+      user?.updateDisplayName(firstNameValue!);
       await userService.syncOrCreateUserAccount(user:
         CurrentUser(
           id: user!.uid,
-          email: user.email,
+          email: user!.email,
         )
       );
+      //log new user into mongoDb
+      final data = mongoDbModel(
+        id: user!.uid,
+        firstName: firstNameValue!,
+        lastName: lastNameValue!,
+      );
+      await MongoDatabase.insert(data);
       // navigate to success route
       navigationService.replaceWith(successRoute);
     } else {

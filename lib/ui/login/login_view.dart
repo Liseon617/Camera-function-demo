@@ -1,4 +1,4 @@
-import 'package:demo_app_v2/ui/dumb_widgets/authentication_layout.dart';
+import 'package:demo_app_v4/ui/dumb_widgets/authentication_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';

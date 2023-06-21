@@ -1,5 +1,5 @@
 import 'package:sign_in_button/sign_in_button.dart';
-import 'package:demo_app_v2/ui/shared/styles.dart';
+import 'package:demo_app_v4/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 
@@ -101,8 +101,7 @@ class AuthenticationLayout extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: kcPrimaryColor,
                       borderRadius: BorderRadius.circular(8)),
-                  child: busy!
-                      ? const CircularProgressIndicator(
+                  child: busy? const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation(Colors.white),
                         )
                       : Text(
@@ -127,7 +126,7 @@ class AuthenticationLayout extends StatelessWidget {
                         ))
                   ],
                 )),
-          if (showTermsText!)
+          if (showTermsText)
             const Text(
               'By Signing up you agree to our terms, conditions and privacy policy.',
               style: ktsMediumGreyBodyText,

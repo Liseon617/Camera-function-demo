@@ -9,7 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-const String FullNameValueKey = 'fullName';
+const String FirstNameValueKey = 'firstName';
+const String LastNameValueKey = 'lastName';
 const String EmailValueKey = 'email';
 const String PasswordValueKey = 'password';
 
@@ -20,19 +21,23 @@ final Map<String, FocusNode> _CreateAccountViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
     _CreateAccountViewTextValidations = {
-  FullNameValueKey: null,
+  FirstNameValueKey: null,
+  LastNameValueKey: null,
   EmailValueKey: null,
   PasswordValueKey: null,
 };
 
 mixin $CreateAccountView {
-  TextEditingController get fullNameController =>
-      _getFormTextEditingController(FullNameValueKey);
+  TextEditingController get firstNameController =>
+      _getFormTextEditingController(FirstNameValueKey);
+  TextEditingController get lastNameController =>
+      _getFormTextEditingController(LastNameValueKey);
   TextEditingController get emailController =>
       _getFormTextEditingController(EmailValueKey);
   TextEditingController get passwordController =>
       _getFormTextEditingController(PasswordValueKey);
-  FocusNode get fullNameFocusNode => _getFormFocusNode(FullNameValueKey);
+  FocusNode get firstNameFocusNode => _getFormFocusNode(FirstNameValueKey);
+  FocusNode get lastNameFocusNode => _getFormFocusNode(LastNameValueKey);
   FocusNode get emailFocusNode => _getFormFocusNode(EmailValueKey);
   FocusNode get passwordFocusNode => _getFormFocusNode(PasswordValueKey);
 
@@ -60,7 +65,8 @@ mixin $CreateAccountView {
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void syncFormWithViewModel(FormViewModel model) {
-    fullNameController.addListener(() => _updateFormData(model));
+    firstNameController.addListener(() => _updateFormData(model));
+    lastNameController.addListener(() => _updateFormData(model));
     emailController.addListener(() => _updateFormData(model));
     passwordController.addListener(() => _updateFormData(model));
   }
@@ -72,7 +78,8 @@ mixin $CreateAccountView {
     'This feature was deprecated after 3.1.0.',
   )
   void listenToFormUpdated(FormViewModel model) {
-    fullNameController.addListener(() => _updateFormData(model));
+    firstNameController.addListener(() => _updateFormData(model));
+    lastNameController.addListener(() => _updateFormData(model));
     emailController.addListener(() => _updateFormData(model));
     passwordController.addListener(() => _updateFormData(model));
   }
@@ -88,7 +95,8 @@ mixin $CreateAccountView {
     model.setData(
       model.formValueMap
         ..addAll({
-          FullNameValueKey: fullNameController.text,
+          FirstNameValueKey: firstNameController.text,
+          LastNameValueKey: lastNameController.text,
           EmailValueKey: emailController.text,
           PasswordValueKey: passwordController.text,
         }),
@@ -118,21 +126,37 @@ mixin $CreateAccountView {
 extension ValueProperties on FormViewModel {
   bool get isFormValid =>
       this.fieldsValidationMessages.values.every((element) => element == null);
-  String? get fullNameValue => this.formValueMap[FullNameValueKey] as String?;
+  String? get firstNameValue => this.formValueMap[FirstNameValueKey] as String?;
+  String? get lastNameValue => this.formValueMap[LastNameValueKey] as String?;
   String? get emailValue => this.formValueMap[EmailValueKey] as String?;
   String? get passwordValue => this.formValueMap[PasswordValueKey] as String?;
 
-  set fullNameValue(String? value) {
+  set firstNameValue(String? value) {
     this.setData(
       this.formValueMap
         ..addAll({
-          FullNameValueKey: value,
+          FirstNameValueKey: value,
         }),
     );
 
     if (_CreateAccountViewTextEditingControllers.containsKey(
-        FullNameValueKey)) {
-      _CreateAccountViewTextEditingControllers[FullNameValueKey]?.text =
+        FirstNameValueKey)) {
+      _CreateAccountViewTextEditingControllers[FirstNameValueKey]?.text =
+          value ?? '';
+    }
+  }
+
+  set lastNameValue(String? value) {
+    this.setData(
+      this.formValueMap
+        ..addAll({
+          LastNameValueKey: value,
+        }),
+    );
+
+    if (_CreateAccountViewTextEditingControllers.containsKey(
+        LastNameValueKey)) {
+      _CreateAccountViewTextEditingControllers[LastNameValueKey]?.text =
           value ?? '';
     }
   }
@@ -166,9 +190,12 @@ extension ValueProperties on FormViewModel {
     }
   }
 
-  bool get hasFullName =>
-      this.formValueMap.containsKey(FullNameValueKey) &&
-      (fullNameValue?.isNotEmpty ?? false);
+  bool get hasFirstName =>
+      this.formValueMap.containsKey(FirstNameValueKey) &&
+      (firstNameValue?.isNotEmpty ?? false);
+  bool get hasLastName =>
+      this.formValueMap.containsKey(LastNameValueKey) &&
+      (lastNameValue?.isNotEmpty ?? false);
   bool get hasEmail =>
       this.formValueMap.containsKey(EmailValueKey) &&
       (emailValue?.isNotEmpty ?? false);
@@ -176,15 +203,19 @@ extension ValueProperties on FormViewModel {
       this.formValueMap.containsKey(PasswordValueKey) &&
       (passwordValue?.isNotEmpty ?? false);
 
-  bool get hasFullNameValidationMessage =>
-      this.fieldsValidationMessages[FullNameValueKey]?.isNotEmpty ?? false;
+  bool get hasFirstNameValidationMessage =>
+      this.fieldsValidationMessages[FirstNameValueKey]?.isNotEmpty ?? false;
+  bool get hasLastNameValidationMessage =>
+      this.fieldsValidationMessages[LastNameValueKey]?.isNotEmpty ?? false;
   bool get hasEmailValidationMessage =>
       this.fieldsValidationMessages[EmailValueKey]?.isNotEmpty ?? false;
   bool get hasPasswordValidationMessage =>
       this.fieldsValidationMessages[PasswordValueKey]?.isNotEmpty ?? false;
 
-  String? get fullNameValidationMessage =>
-      this.fieldsValidationMessages[FullNameValueKey];
+  String? get firstNameValidationMessage =>
+      this.fieldsValidationMessages[FirstNameValueKey];
+  String? get lastNameValidationMessage =>
+      this.fieldsValidationMessages[LastNameValueKey];
   String? get emailValidationMessage =>
       this.fieldsValidationMessages[EmailValueKey];
   String? get passwordValidationMessage =>
@@ -192,8 +223,10 @@ extension ValueProperties on FormViewModel {
 }
 
 extension Methods on FormViewModel {
-  setFullNameValidationMessage(String? validationMessage) =>
-      this.fieldsValidationMessages[FullNameValueKey] = validationMessage;
+  setFirstNameValidationMessage(String? validationMessage) =>
+      this.fieldsValidationMessages[FirstNameValueKey] = validationMessage;
+  setLastNameValidationMessage(String? validationMessage) =>
+      this.fieldsValidationMessages[LastNameValueKey] = validationMessage;
   setEmailValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[EmailValueKey] = validationMessage;
   setPasswordValidationMessage(String? validationMessage) =>
@@ -201,7 +234,8 @@ extension Methods on FormViewModel {
 
   /// Clears text input fields on the Form
   void clearForm() {
-    fullNameValue = '';
+    firstNameValue = '';
+    lastNameValue = '';
     emailValue = '';
     passwordValue = '';
   }
@@ -209,7 +243,8 @@ extension Methods on FormViewModel {
   /// Validates text input fields on the Form
   void validateForm() {
     this.setValidationMessages({
-      FullNameValueKey: getValidationMessage(FullNameValueKey),
+      FirstNameValueKey: getValidationMessage(FirstNameValueKey),
+      LastNameValueKey: getValidationMessage(LastNameValueKey),
       EmailValueKey: getValidationMessage(EmailValueKey),
       PasswordValueKey: getValidationMessage(PasswordValueKey),
     });
@@ -230,7 +265,8 @@ String? getValidationMessage(String key) {
 
 /// Updates the fieldsValidationMessages on the FormViewModel
 void updateValidationData(FormViewModel model) => model.setValidationMessages({
-      FullNameValueKey: getValidationMessage(FullNameValueKey),
+      FirstNameValueKey: getValidationMessage(FirstNameValueKey),
+      LastNameValueKey: getValidationMessage(LastNameValueKey),
       EmailValueKey: getValidationMessage(EmailValueKey),
       PasswordValueKey: getValidationMessage(PasswordValueKey),
     });

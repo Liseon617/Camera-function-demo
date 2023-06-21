@@ -1,10 +1,9 @@
-import 'package:demo_app_v2/ui/base/authentication_viewmodel.dart';
-import 'package:stacked/stacked.dart';
+import 'package:demo_app_v4/ui/base/authentication_viewmodel.dart';
+import 'package:demo_app_v4/ui/login/login_view.form.dart';
 import 'package:stacked_firebase_auth/src/firebase_authentication_service.dart';
 
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
-import 'login_view.form.dart';
 
 class LoginViewModel extends AuthenticationViewModel {
   final _firebaseAuthenticationService =
@@ -18,5 +17,5 @@ class LoginViewModel extends AuthenticationViewModel {
         password: passwordValue!,
       );
 
-  void navigateToCreateAccount() => navigationService!.navigateTo(Routes.createAccountView);
+  void navigateToCreateAccount() => navigationService.navigateTo(Routes.createAccountView);
 }
