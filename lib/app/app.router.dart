@@ -9,12 +9,13 @@ import 'package:demo_app_v4/ui/address_selection/address_selection_view.dart'
     as _i3;
 import 'package:demo_app_v4/ui/create_account/create_account_view.dart' as _i4;
 import 'package:demo_app_v4/ui/login/login_view.dart' as _i5;
+import 'package:demo_app_v4/ui/login_signup/login_screen_view.dart' as _i6;
 import 'package:demo_app_v4/ui/startup/startup_view.dart' as _i2;
-import 'package:flutter/cupertino.dart' as _i7;
-import 'package:flutter/material.dart' as _i6;
+import 'package:flutter/cupertino.dart' as _i8;
+import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const startUpView = '/start-up-view';
@@ -23,13 +24,16 @@ class Routes {
 
   static const createAccountView = '/create-account-view';
 
-  static const loginView = '/';
+  static const loginView = '/login-view';
+
+  static const loginScreenView = '/';
 
   static const all = <String>{
     startUpView,
     addressSelectionView,
     createAccountView,
     loginView,
+    loginScreenView,
   };
 }
 
@@ -51,30 +55,40 @@ class StackedRouter extends _i1.RouterBase {
       Routes.loginView,
       page: _i5.LoginView,
     ),
+    _i1.RouteDef(
+      Routes.loginScreenView,
+      page: _i6.LoginScreenView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartUpView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
+      return _i7.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StartUpView(),
         settings: data,
       );
     },
     _i3.AddressSelectionView: (data) {
-      return _i7.CupertinoPageRoute<dynamic>(
+      return _i8.CupertinoPageRoute<dynamic>(
         builder: (context) => const _i3.AddressSelectionView(),
         settings: data,
       );
     },
     _i4.CreateAccountView: (data) {
-      return _i7.CupertinoPageRoute<dynamic>(
+      return _i8.CupertinoPageRoute<dynamic>(
         builder: (context) => const _i4.CreateAccountView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i7.CupertinoPageRoute<dynamic>(
+      return _i8.CupertinoPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
+        settings: data,
+      );
+    },
+    _i6.LoginScreenView: (data) {
+      return _i8.CupertinoPageRoute<dynamic>(
+        builder: (context) => const _i6.LoginScreenView(),
         settings: data,
       );
     },
@@ -86,7 +100,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToStartUpView([
     int? routerId,
     bool preventDuplicates = true,
@@ -143,6 +157,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToLoginScreenView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.loginScreenView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithStartUpView([
     int? routerId,
     bool preventDuplicates = true,
@@ -193,6 +221,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.loginView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithLoginScreenView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.loginScreenView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

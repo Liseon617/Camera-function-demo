@@ -21,8 +21,7 @@ CurrentUser _$CurrentUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CurrentUser {
   String get id => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +36,7 @@ abstract class $CurrentUserCopyWith<$Res> {
           CurrentUser value, $Res Function(CurrentUser) then) =
       _$CurrentUserCopyWithImpl<$Res, CurrentUser>;
   @useResult
-  $Res call({String id, String? firstName, String? lastName, String? email});
+  $Res call({String id, String? displayName, String? email});
 }
 
 /// @nodoc
@@ -54,8 +53,7 @@ class _$CurrentUserCopyWithImpl<$Res, $Val extends CurrentUser>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
+    Object? displayName = freezed,
     Object? email = freezed,
   }) {
     return _then(_value.copyWith(
@@ -63,13 +61,9 @@ class _$CurrentUserCopyWithImpl<$Res, $Val extends CurrentUser>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -87,7 +81,7 @@ abstract class _$$_CurrentUserCopyWith<$Res>
       __$$_CurrentUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? firstName, String? lastName, String? email});
+  $Res call({String id, String? displayName, String? email});
 }
 
 /// @nodoc
@@ -102,8 +96,7 @@ class __$$_CurrentUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
+    Object? displayName = freezed,
     Object? email = freezed,
   }) {
     return _then(_$_CurrentUser(
@@ -111,13 +104,9 @@ class __$$_CurrentUserCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -130,7 +119,7 @@ class __$$_CurrentUserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CurrentUser implements _CurrentUser {
-  _$_CurrentUser({required this.id, this.firstName, this.lastName, this.email});
+  _$_CurrentUser({required this.id, this.displayName, this.email});
 
   factory _$_CurrentUser.fromJson(Map<String, dynamic> json) =>
       _$$_CurrentUserFromJson(json);
@@ -138,15 +127,13 @@ class _$_CurrentUser implements _CurrentUser {
   @override
   final String id;
   @override
-  final String? firstName;
-  @override
-  final String? lastName;
+  final String? displayName;
   @override
   final String? email;
 
   @override
   String toString() {
-    return 'CurrentUser(id: $id, firstName: $firstName, lastName: $lastName, email: $email)';
+    return 'CurrentUser(id: $id, displayName: $displayName, email: $email)';
   }
 
   @override
@@ -155,16 +142,14 @@ class _$_CurrentUser implements _CurrentUser {
         (other.runtimeType == runtimeType &&
             other is _$_CurrentUser &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email);
+  int get hashCode => Object.hash(runtimeType, id, displayName, email);
 
   @JsonKey(ignore: true)
   @override
@@ -183,8 +168,7 @@ class _$_CurrentUser implements _CurrentUser {
 abstract class _CurrentUser implements CurrentUser {
   factory _CurrentUser(
       {required final String id,
-      final String? firstName,
-      final String? lastName,
+      final String? displayName,
       final String? email}) = _$_CurrentUser;
 
   factory _CurrentUser.fromJson(Map<String, dynamic> json) =
@@ -193,9 +177,7 @@ abstract class _CurrentUser implements CurrentUser {
   @override
   String get id;
   @override
-  String? get firstName;
-  @override
-  String? get lastName;
+  String? get displayName;
   @override
   String? get email;
   @override

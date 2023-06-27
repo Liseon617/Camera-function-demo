@@ -101,7 +101,7 @@ class AuthenticationLayout extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: kcPrimaryColor,
                       borderRadius: BorderRadius.circular(8)),
-                  child: busy? const CircularProgressIndicator(
+                  child: busy ? const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation(Colors.white),
                         )
                       : Text(

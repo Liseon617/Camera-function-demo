@@ -6,11 +6,11 @@
 
 // ignore_for_file: public_member_api_docs, implementation_imports, depend_on_referenced_packages
 
+import 'package:demo_app_v4/Services/user_service.dart';
 import 'package:stacked_firebase_auth/src/firebase_authentication_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import '../Services/user_service.dart';
 import '../api/firestore_api.dart';
 
 final locator = StackedLocator.instance;

@@ -12,9 +12,15 @@ import 'create_account_view.form.dart';
   FormTextField(name: 'email'),
   FormTextField(name: 'password'),
 ])
-class CreateAccountView extends StatelessWidget with $CreateAccountView {
-  const CreateAccountView({Key? key}) : super(key: key);
 
+class CreateAccountView extends StatefulWidget {
+  const CreateAccountView({super.key});
+
+  @override
+  _CreateAccountView createState() => _CreateAccountView();
+}
+
+class _CreateAccountView extends State<CreateAccountView> with $CreateAccountView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreateAccountViewModel>.reactive(

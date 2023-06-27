@@ -5,24 +5,26 @@ import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import '../app/app.logger.dart';
 import '../models/application_models.dart';
 
-class UserService{
-  final log = getLogger('userService');
+class UserService {
+  final log = getLogger('UserService');
 
   final _firestoreApi = locator<FirestoreApi>();
-  final _firebaseAuthenticationService = locator<FirebaseAuthenticationService>();
+  final _firebaseAuthenticationService =
+      locator<FirebaseAuthenticationService>();
 
   CurrentUser? _currentUser;
 
   CurrentUser? get currentUser => _currentUser;
 
   Future<void> syncUserAccount() async {
-    final firebaseUserId = _firebaseAuthenticationService.firebaseAuth.currentUser!.uid;
+    final firebaseUserId =
+        _firebaseAuthenticationService.firebaseAuth.currentUser!.uid;
 
     log.v('Sync user $firebaseUserId');
 
     final userAccount = await _firestoreApi.getUser(userId: firebaseUserId);
 
-    if(userAccount != null){
+    if (userAccount != null) {
       log.v('User account exists. Save as _currentUser');
       _currentUser = userAccount; //check 2
     }
@@ -33,7 +35,7 @@ class UserService{
 
     await syncUserAccount();
 
-    if(currentUser == null){
+    if (currentUser == null) {
       log.v('We have no user account. Create a new user ....');
       await _firestoreApi.createUser(user: user);
       _currentUser = user;

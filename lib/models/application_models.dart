@@ -4,12 +4,11 @@ part 'application_models.freezed.dart';
 part 'application_models.g.dart';
 
 @freezed
-abstract class CurrentUser with _$CurrentUser {
+class CurrentUser with _$CurrentUser {
 
   factory CurrentUser({
     required String id,
-    String? firstName,
-    String? lastName,
+    String? displayName,
     String? email,
   }) = _CurrentUser;
 

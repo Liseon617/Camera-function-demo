@@ -4,7 +4,6 @@ import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
-import '../../models/mongoDbModel.dart';
 
 class CreateAccountViewModel extends AuthenticationViewModel {
   final _firebaseAuthenticationService =

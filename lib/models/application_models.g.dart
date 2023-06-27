@@ -9,15 +9,13 @@ part of 'application_models.dart';
 _$_CurrentUser _$$_CurrentUserFromJson(Map<String, dynamic> json) =>
     _$_CurrentUser(
       id: json['id'] as String,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      displayName: json['displayName'] as String?,
       email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$_CurrentUserToJson(_$_CurrentUser instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'displayName': instance.displayName,
       'email': instance.email,
     };

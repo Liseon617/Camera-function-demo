@@ -10,24 +10,24 @@ String mongoDbModelToJson(mongoDbModel data) => json.encode(data.toJson());
 
 class mongoDbModel {
   String id;
-  String firstName;
-  String lastName;
+  String userName;
+  String accountType;
 
   mongoDbModel({
     required this.id,
-    required this.firstName,
-    required this.lastName,
+    required this.userName,
+    required this.accountType,
   });
 
   factory mongoDbModel.fromJson(Map<String, dynamic> json) => mongoDbModel(
     id: json["id"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
+    userName: json["userName"],
+    accountType: json["accountType"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "firstName": firstName,
-    "lastName": lastName,
+    "userName": userName,
+    "accountType": accountType,
   };
 }

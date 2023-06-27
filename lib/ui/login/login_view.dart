@@ -10,9 +10,15 @@ import 'login_viewmodel.dart';
   FormTextField(name: 'email'),
   FormTextField(name: 'password'),
 ])
-class LoginView extends StatelessWidget with $LoginView {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
+  @override
+  _LoginView createState() => _LoginView();
+}
+
+class _LoginView extends State<LoginView> with $LoginView {
+  
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
