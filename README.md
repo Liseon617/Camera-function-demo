@@ -1,4 +1,4 @@
-# demo_app_v4
+# camera function demo
 
 A new Flutter project.
 
